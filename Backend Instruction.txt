@@ -1,0 +1,15 @@
+How to run these project in localhost
+"you can use postman for checking API"
+
+step 1: create an empty folder then open this folder in vs code then clone this project by git clone ./ in vs code
+step 2:now install all dependency by npm install
+step 3: now create .env file and put all necessary key words are as follow
+1.MONGO_URL=//paste mongo db url
+2.JWT_SECRET=//create some secret keyword like eg:SECURE##
+3.PORT=//eg:8000
+step 4: npm run //It will run our project
+
+Thank You.
+
+
+.
