@@ -3,12 +3,11 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema({
 
     //schema
-    items: [{ type: [mongoose.Schema.Types.Mixed], required: true }],
-    totalAmount: { type: Number },
+    items: { type: [mongoose.Schema.Types.Mixed], required: true },
     paymentMethod: { type: String, required: true },
     status: { type: String, default: "pending" },
     getAddress: { type: [mongoose.Schema.Types.Mixed] },
-    // seller_ID: { type: Object },
+    sellerID: { type: String }
 
 })
 const OrderModel = mongoose.model("order", orderSchema)

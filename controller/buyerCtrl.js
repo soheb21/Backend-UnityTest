@@ -1,9 +1,10 @@
+const CatalogModel = require("../model/catalogModel");
 const OrderModel = require("../model/orderModel");
 const userModel = require("../model/userModel")
 
 exports.fetchAllSellers = async (req, res) => {
     try {
-        const allSellers = await userModel.find({});
+        const allSellers = await userModel.find({ role: "seller" });
         res.status(201).json({
             success: true,
             message: "Feteched All Sellers Successfully",
@@ -21,8 +22,8 @@ exports.fetchAllSellers = async (req, res) => {
 
 exports.fetchOneSeller = async (req, res) => {
     try {
-        const { id } = req.params;
-        const oneSeller = await userModel.findById(id);
+        const { seller_id } = req.params;
+        const oneSeller = await CatalogModel.findOne({ sellerID: seller_id });
         res.status(201).json({
             success: true,
             message: "Feteched one Seller Successfully",
@@ -38,8 +39,8 @@ exports.fetchOneSeller = async (req, res) => {
 }
 exports.createOrder = async (req, res) => {
     try {
-        const { id } = req.params;
-        const order = new OrderModel({ ...req.body, seller_ID: id });
+        const { seller_id } = req.params;
+        const order = new OrderModel({ ...req.body, sellerID: seller_id });
         const doc = await order.save();
         res.status(201).json({
             success: true,

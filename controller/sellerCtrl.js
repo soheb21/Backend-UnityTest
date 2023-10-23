@@ -1,4 +1,5 @@
-const CatalogModel = require("../model/catalogModel")
+const CatalogModel = require("../model/catalogModel");
+const OrderModel = require("../model/orderModel");
 
 exports.createCatalog = async (req, res) => {
     try {
@@ -22,8 +23,9 @@ exports.createCatalog = async (req, res) => {
 exports.fetchOrdertBySeller = async (req, res) => {
 
     try {
+        //now each seller recived order seperately.
         const { id } = req.params;
-        const order = await OrderModel.find({ user: id })
+        const order = await OrderModel.find({ sellerID: id })
         res.status(201).json({
             success: true,
             message: "Feteched user orders Successfully",
@@ -31,6 +33,6 @@ exports.fetchOrdertBySeller = async (req, res) => {
         })
     } catch (error) {
         console.log("Feetching Error", error)
-        res.status(501).json({ success: false, message: "Failed to fetch Order", error })
+        res.status(501).json({ success: false, message: error.message })
     }
 }
